@@ -40,9 +40,10 @@ public class AccountController {
     @GetMapping
     public Page<AccountResponseDto> getAccounts(
             @RequestParam(required = false) String iban,
-            @RequestParam(required = false) String bicswift,
+            @RequestParam(required = false) String bicSwift,
+            @RequestParam(required = false) UUID customerId,
             @PageableDefault(size = 10) Pageable pageable) {
-        return accountService.search(iban, bicswift, pageable);
+        return accountService.search(iban, bicSwift, customerId, pageable);
     }
 
     @DeleteMapping("/{id}")

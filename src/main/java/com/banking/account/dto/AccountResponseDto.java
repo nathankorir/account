@@ -13,7 +13,7 @@ import java.util.UUID;
 public class AccountResponseDto {
     private UUID id;
     private String iban;
-    private String bicswift;
+    private String bicSwift;
     private UUID customerId;
     private String voided;
     private LocalDateTime createdAt;

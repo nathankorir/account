@@ -21,7 +21,7 @@ public class Account {
     @Column
     private String iban;
     @Column
-    private String bicswift;
+    private String bicSwift;
     @Column
     private UUID customerId;
 

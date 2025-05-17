@@ -40,8 +40,8 @@ public class AccountService {
         return accountRepository.findById(id).map(accountMapper::toDto);
     }
 
-    public Page<AccountResponseDto> search(String iban, String bicswift, Pageable pageable) {
-        BooleanExpression predicate = buildAccountPredicate(iban, bicswift);
+    public Page<AccountResponseDto> search(String iban, String bicSwift, UUID customerId, Pageable pageable) {
+        BooleanExpression predicate = buildAccountPredicate(iban, bicSwift, customerId);
         return accountRepository.findAll(predicate, pageable)
                 .map(accountMapper::toDto);
     }
@@ -53,7 +53,7 @@ public class AccountService {
         accountRepository.save(account);
     }
 
-    public static BooleanExpression buildAccountPredicate(String iban, String bicswift) {
+    public static BooleanExpression buildAccountPredicate(String iban, String bicSwift, UUID customerId) {
         QAccount qAccount = QAccount.account;
         BooleanExpression predicate = qAccount.voided.isFalse();
 
@@ -61,8 +61,12 @@ public class AccountService {
             predicate = predicate.and(qAccount.iban.eq(iban));
         }
 
-        if (StringUtils.hasText(bicswift)) {
-            predicate = predicate.and(qAccount.bicswift.eq(bicswift));
+        if (StringUtils.hasText(bicSwift)) {
+            predicate = predicate.and(qAccount.bicSwift.eq(bicSwift));
+        }
+
+        if (customerId != null) {
+            predicate = predicate.and(qAccount.customerId.eq(customerId));
         }
 
         return predicate;

@@ -11,6 +11,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AccountRequestDto {
     private String iban;
-    private String bicswift;
+    private String bicSwift;
     private UUID customerId;
 }

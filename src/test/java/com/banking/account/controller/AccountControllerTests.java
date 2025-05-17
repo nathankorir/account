@@ -30,7 +30,7 @@ public class AccountControllerTests {
         String json = """
                     {
                       "iban": "DE89370400440532013000",
-                      "bicswift": "DEUTDEFF",
+                      "bicSwift": "DEUTDEFF",
                       "customerId": "123e4567-e89b-12d3-a456-426614174000"
                     }
                 """;
@@ -85,14 +85,14 @@ public class AccountControllerTests {
                         .content(objectMapper.writeValueAsString(updateRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.iban").value("DE89370400440532013021"))
-                .andExpect(jsonPath("$.bicswift").value("DGUTWEFF"));
+                .andExpect(jsonPath("$.bicSwift").value("DGUTWEFF"));
     }
 
     @Test
     void whenListAccountsThenSuccess() throws Exception {
         mockMvc.perform(get("/accounts")
                         .param("iban", "DE89370400440532013002")
-                        .param("bicswift", "DEUTDEFG")
+                        .param("bicSwift", "DEUTDEFG")
                         .param("page", "0")
                         .param("size", "10"))
                 .andExpect(status().isOk())
