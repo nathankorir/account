@@ -24,7 +24,7 @@ Follow these steps to run the application locally:
 docker-compose up
 ```
 
-### 1. Run the application
+### 2. Run the application
 ```bash
 ./mvnw spring-boot:run  
 ```
