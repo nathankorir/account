@@ -10,3 +10,9 @@ CREATE TABLE account
     created_at  TIMESTAMP   NOT NULL DEFAULT now(),
     updated_at  TIMESTAMP   NOT NULL DEFAULT now()
 );
+
+-- Index searchable fields
+CREATE INDEX idx_account_iban ON account (iban);
+CREATE INDEX idx_account_bic_swift ON account (bic_swift);
+CREATE INDEX idx_account_customer_id ON account (customer_id);
+
